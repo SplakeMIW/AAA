@@ -8,5 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
 db.init_app(app)
 migrate = Migrate(app, db)
 
-with app.app_context():
-    db.create_all()
+@app.route('/')
+def homepage():
+    users = User.query.all()
+    return print(users)
